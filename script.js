@@ -31,6 +31,11 @@ class Movie {
     }
 }
 
+console.log(`
+Task 1:
+
+`)
+
 //Array that consists of all Movie objects
 const movies = [
     new Movie("Casino Royale", "Eon Productions", "PG-13"),
@@ -65,34 +70,41 @@ class Circle {
         this.color = color;
     }
 
-    getRadius() {
+    get Radius() {
         return this.radius;
     }
 
-    setRadius(radius) {
+    set Radius(radius) {
         this.radius = radius;
     }
 
-    getColor() {
+    get Color() {
         return this.color;
     }
 
-    setColor(color) {
+    set Color(color) {
         this.color = color;
     }
 
-    toString() {}
+    toString() {
+        return `"Circle[radius = ${this.radius}, color = ${this.color}"`;
+    }
     
-    getArea() {
-        const area = ((Math.PI) * (this.radius ** 2)).toFixed(2);
+    get Area() {
+        const area = ((Math.PI) * (Math.pow(this.radius, 2))).toFixed(2);
         return area;
     }
 
-    getCircumference() {
+    get Circumference() {
         const circumference = (2 * (Math.PI) * this.radius).toFixed(2);
         return circumference;
     }
 }
+
+console.log(`
+Task 2:
+
+`)
 
 // Creating the instance of Circle class without passing the properties
 const circleWithoutPassingProperties = new Circle();
@@ -110,29 +122,31 @@ console.log(`Oject by passing both radius and color property as 4.5 and blue, Ra
 const circleGetterSetter = new Circle(5.5, "green");
 
 // Getting the radius
-const radius = circleGetterSetter.getRadius();
+const radius = circleGetterSetter.Radius;
 console.log(`Radius: ${radius}`);
 
 // Setting the radius and printing the setted radius
-circleGetterSetter.setRadius(10.5);
-console.log(`New Radius = ${circleGetterSetter.getRadius()}`);
+circleGetterSetter.Radius = 10.5;
+console.log(`New Radius = ${circleGetterSetter.Radius}`);
 
 // Getting the color
-const color = circleGetterSetter.getColor();
+const color = circleGetterSetter.Color;
 console.log(`Color: ${color}`);
 
 // Setting the radius and printing the setted radius
-circleGetterSetter.setColor("gray");
-console.log(`New Color = ${circleGetterSetter.getColor()}`);
+circleGetterSetter.Color = "gray";
+console.log(`New Color = ${circleGetterSetter.Color}`);
 
 // Area of circle
-const area = circleGetterSetter.getArea();
-console.log(`Area of circle with radius: ${circleGetterSetter.getRadius()} = ${area}`);
+const area = circleGetterSetter.Area;
+console.log(`Area of circle with radius: ${circleGetterSetter.Radius} = ${area}`);
 
 // Circumference of circle
-const circumference = circleGetterSetter.getCircumference();
-console.log(`Circumference of circle with radius: ${circleGetterSetter.getRadius()} = ${circumference}`);
+const circumference = circleGetterSetter.Circumference;
+console.log(`Circumference of circle with radius: ${circleGetterSetter.Radius} = ${circumference}`);
 
+//toString 
+console.log(circleGetterSetter.toString());
 
 
 
@@ -140,14 +154,85 @@ console.log(`Circumference of circle with radius: ${circleGetterSetter.getRadius
 //Task 3: Write a “person” class to hold all the details
 
 class Person {
-    constructor(name, gender, bloodGroup, mobileNumber, address) {
+    constructor(name, gender, bloodGroup, email, mobileNumber, martialStatus, address) {
         this.name = name;
         this.gender = gender;
         this.bloodGroup = bloodGroup;
+        this.email = email;
         this.mobileNumber = mobileNumber;
+        this.martialStatus = martialStatus;
         this.address = address;
     }
 }
 
-const person = new Person("Santhosh Annamalai", "Male", "O+ve", "8487564432", "No. 20, Gandhi Street, Gandhi Nagar, Gandhipuram, Chennai-600034")
-console.log(`Name: ${person.name}, Gender: ${person.gender}, Blood Group: ${person.bloodGroup}, Mobile Number: ${person.mobileNumber}, Address: ${person.address}`);
+const person = new Person("Santhosh Annamalai", "Male", "O+ve", "santhosh@gmail.com", "8487564432", "single", "No. 20, Gandhi Street, Gandhi Nagar, Gandhipuram, Chennai-600034")
+console.log(`
+    Task 3:
+
+    User Details:
+    
+    **********************************************
+    Name: ${person.name}
+    Gender: ${person.gender}
+    Blood Group: ${person.bloodGroup}
+    Email: ${person.email}
+    Mobile Number: ${person.mobileNumber}
+    Marital Status: ${person.martialStatus}
+    Address: ${person.address}
+    
+`);
+
+
+
+//Task 4: Write a class to calculate the Uber price
+
+class Uber {
+    constructor(customerName, customerPhoneNumber, fromLocation, toLocation, distance, farePerKm=14, baseFare, driverFee=300, totalFare) {
+        this.customerName = customerName;
+        this.customerPhoneNumber = customerPhoneNumber;
+        this.fromLocation = fromLocation;
+        this.toLocation = toLocation;
+        this.distance = distance;
+        this.farePerKm = farePerKm;
+        this.baseFare = baseFare;
+        this.driverFee = driverFee;
+        this.totalFare = totalFare;
+    }
+
+    get totalDistance() {
+
+        //Usually we use some api eg.google api to calculate distance, by taking from and to location. Here I'm assuming random number as distance.
+        this.distance =  Math.floor(Math.random() * (500 - 1 + 1)) + 1
+        return this.distance;
+    }
+
+    get baseF() {
+        this.baseFare = this.distance * this.farePerKm;
+        return this.baseFare;
+    }
+
+    get totalF() {
+        this.totalFare = this.baseFare + this.driverFee;
+        return this.totalFare;
+    }
+}
+
+const getEstimatedFare = new Uber("Santhosh", "+91 9361206901", "Chennai, Tamil Nadu, India", "Tiruvannamalai, Tamil Nadu, India");
+console.log(`
+    Task 4: 
+
+    Customer name: ${getEstimatedFare.customerName}
+    Customer contact number: ${getEstimatedFare.customerPhoneNumber}
+    From location: ${getEstimatedFare.fromLocation}
+    To location: ${getEstimatedFare.toLocation}
+    Fare per km: ₹ ${getEstimatedFare.farePerKm}
+    Total km: ${getEstimatedFare.totalDistance} km
+
+    **********************************************
+    Base Fare: ₹ ${getEstimatedFare.baseF}
+    Driver Fee: ₹ ${getEstimatedFare.driverFee}
+    Total Estimated Fare: ₹ ${getEstimatedFare.totalF}
+
+    Note: Fare may vary after the complition of ride, due to other charges like toll etc..
+
+`)
