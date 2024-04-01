@@ -87,7 +87,7 @@ class Circle {
     }
 
     toString() {
-        return `"Circle[radius = ${this.radius}, color = ${this.color}"`;
+        return `"Circle[radius = ${this.radius}, color = ${this.color}]"`;
     }
     
     get Area() {
